@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-ruby '2.6.6'
+#ruby '3.1.2'
+ruby '2.6.10'
 gem 'rails', '4.2.11'
 
 
@@ -26,6 +27,7 @@ group :development, :test do
 
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
+  gem 'bigdecimal'
 end
 
 group :production do
