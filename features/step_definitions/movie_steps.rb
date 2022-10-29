@@ -4,8 +4,9 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
+    Movie.create(movie)
   end
-  pending "Fill in this step in movie_steps.rb"
+  #pending "Fill in this step in movie_steps.rb"
 end
 
 Then /(.*) seed movies should exist/ do | n_seeds |
@@ -25,22 +26,39 @@ end
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
 
+When /^I press "(.*)" button/ do |button|
+  click_button button
+end
+
 When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-  pending "Fill in this step in movie_steps.rb"
+  #pending "Fill in this step in movie_steps.rb"
+  ratings = rating_list.split(', ')
+  ratings.each do |rating|
+    uncheck ? uncheck("ratings[#{rating}]") : (check("ratings[#{rating}]"))
+  end
 end
 
 # Part 2, Step 3
-Then /^I should (not )?see the following movies: (.*)$/ do |no, movie_list|
+Then /^I should (not )?see the following movies: (.*)$/ do |present, movies_list|
   # Take a look at web_steps.rb Then /^(?:|I )should see "([^"]*)"$/
-  pending "Fill in this step in movie_steps.rb"
+  #pending "Fill in this step in movie_steps.rb"
+  movies = movies_list.split(', ')
+  movies.each do |movie|
+    if present.nil?
+      expect(page).to have_content(movie)
+    else
+      expect(page).not_to have_content(movie)
+    end
+  end
 end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  pending "Fill in this step in movie_steps.rb"
+  #pending "Fill in this step in movie_steps.rb"
+  expect(page).to have_xpath(".//tr[not(ancestor::thead)]", :count => Movie.count)
 end
 
 ### Utility Steps Just for this assignment.

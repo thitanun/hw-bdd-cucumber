@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.6.6'
+ruby '2.6.10'
 gem 'rails', '4.2.11'
 
 
@@ -8,6 +8,7 @@ gem 'sass-rails', '~> 5.0.3'
 gem 'uglifier', '>= 2.7.1'
 
 gem 'jquery-rails'
+gem 'tzinfo-data'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
@@ -25,7 +26,9 @@ group :development, :test do
   gem 'pry-byebug'
 
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.6'
+  #gem 'sqlite3', '~> 1.3.6'
+  gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+  
 end
 
 group :production do
