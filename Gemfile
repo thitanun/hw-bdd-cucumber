@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-#ruby '3.1.2'
 ruby '2.6.10'
 gem 'rails', '4.2.11'
 
@@ -27,11 +26,17 @@ group :development, :test do
   gem 'pry-byebug'
 
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.6'
-  gem 'bigdecimal'
+  #gem 'sqlite3', '~> 1.3.6'
+  gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby", branch: "add-gemspec"
+  
 end
 
 group :production do
   gem 'pg', '~> 0.2'
   gem 'rails_12factor'
 end
+
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"

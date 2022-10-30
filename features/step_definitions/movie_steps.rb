@@ -99,3 +99,13 @@ Then /complete the rest of of this scenario/ do
   # the line in your scenarios with the appropriate steps.
   fail "Remove this step from your .feature files"
 end
+
+Then /^(?:|I )should be on (.+)$/ do |page_name|
+  current_path = URI.parse(current_url).path
+  #assert_equal path_to(page_name), current_path
+  if current_path.respond_to? :should
+    current_path.should == path_to(page_name)
+  else
+    assert_equal path_to(page_name), current_path
+  end
+end
